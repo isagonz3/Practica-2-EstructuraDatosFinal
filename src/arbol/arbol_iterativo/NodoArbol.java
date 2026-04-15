@@ -1,4 +1,4 @@
-package practica_2.arbol.arbol_iterativo;
+package arbol.arbol_iterativo;
 
 public class NodoArbol<T> {
 

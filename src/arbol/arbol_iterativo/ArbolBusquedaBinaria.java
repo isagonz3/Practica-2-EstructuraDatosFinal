@@ -1,8 +1,8 @@
-package practica_2.arbol.arbol_iterativo;
+package arbol.arbol_iterativo;
 
-import arboles.arbol_iterativo.estructuras_necesarias.ListSE;
-import arboles.arbol_iterativo.estructuras_necesarias.Queue;
-import arboles.arbol_iterativo.estructuras_necesarias.Stack;
+import arbol.arbol_iterativo.estructuras_necesarias.ListSE;
+import arbol.arbol_iterativo.estructuras_necesarias.Queue;
+import arbol.arbol_iterativo.estructuras_necesarias.Stack;
 
 public class ArbolBusquedaBinaria<T extends Comparable<T>> {
 

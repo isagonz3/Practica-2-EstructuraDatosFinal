@@ -1,4 +1,4 @@
-package practica_2.arbol.arbol_iterativo.estructuras_necesarias;
+package arbol.arbol_iterativo.estructuras_necesarias;
 
 public class Queue<T> {
 
