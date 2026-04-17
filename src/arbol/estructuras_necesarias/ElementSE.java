@@ -1,4 +1,4 @@
-package arbol.arbol_iterativo.estructuras_necesarias;
+package arbol.estructuras_necesarias;
 
 public class ElementSE<T> {
 
