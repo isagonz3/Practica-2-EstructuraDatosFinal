@@ -193,6 +193,7 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
     }
 
 
+    //Para obtener una lista con el camino que tenemos que recorrer
     public ListSE<T> getCamino(T dato) {
         ListSE<T> camino = new ListSE<>(); //crea una lista donde se almacena el resultado
         NodoArbol<T> actual = raiz; //inicializa el puntero actual en la raíz del árbol
@@ -219,87 +220,92 @@ public class ArbolBusquedaBinaria<T extends Comparable<T>> {
     }
 
 
+    //Para devolver una lista con los nodos que están en el nivel que se pasa por parámetro
     public ListSE<T> getListaDatosNivel(int nivelBuscado) {
-        ListSE<T> lista = new ListSE<>(); //crea una lista donde se almacena el resultado
+        ListSE<T> lista = new ListSE<>(); //crea una lista donde se guarda el resultado
 
-        if (raiz == null){ //si el árbol está vacío se devuelve la lista
+        if (raiz == null){ //si el árbol está vacío no hay nada que recorrer
             return lista;
         }
 
-        Stack<NodoNivel<T>> pila = new Stack<>();
-        pila.push(new NodoNivel<>(raiz, 0));
+        Stack<NodoNivel<T>> pila = new Stack<>(); //pila auxiliar para recorrer el árbol con el nivel de cada nodo
+        pila.push(new NodoNivel<>(raiz, 0)); //se mete la raíz con nivel 0
 
-        while (!pila.isEmpty()) {
-            NodoNivel<T> actual = pila.pop();
+        while (!pila.isEmpty()) { //mientras queden nodos por procesar
+            NodoNivel<T> actual = pila.pop(); //saca el último nodo añadido junto con su nivel
 
-            if (actual.nivel == nivelBuscado) {
-                lista.addLast(actual.nodo.dato);
-            } else if (actual.nivel < nivelBuscado) {
-                // Primero empujamos el derecho para que el izquierdo se procese antes
+            if (actual.nivel == nivelBuscado) { //si el nivel coincide con el que buscamos
+                lista.addLast(actual.nodo.dato); //añadimos el dato a la lista
+            } else if (actual.nivel < nivelBuscado) { //si todavía no hemos llegado al nivel buscado metemos primero el derecho para que el izquierdo salga antes de la pila
                 if (actual.nodo.hijoDerecho != null)
-                    pila.push(new NodoNivel<>(actual.nodo.hijoDerecho, actual.nivel + 1));
+                    pila.push(new NodoNivel<>(actual.nodo.hijoDerecho, actual.nivel + 1)); //bajamos un nivel al hijo derecho
 
                 if (actual.nodo.hijoIzquierdo != null)
-                    pila.push(new NodoNivel<>(actual.nodo.hijoIzquierdo, actual.nivel + 1));
+                    pila.push(new NodoNivel<>(actual.nodo.hijoIzquierdo, actual.nivel + 1)); //bajamos un nivel al hijo izquierdo
             }
         }
 
-        return lista;
+        return lista; //devolvemos la lista con los nodos del nivel pedido
     }
-    private static class NodoNivel<T> {
-        NodoArbol<T> nodo;
-        int nivel;
 
-        NodoNivel(NodoArbol<T> nodo, int nivel) {
+    private static class NodoNivel<T> { //estructura auxiliar para poder guardar un nodo junto con su nivel
+        NodoArbol<T> nodo; //nodo del árbol
+        int nivel; //nivel en el que está ese nodo
+
+        NodoNivel(NodoArbol<T> nodo, int nivel) { //constructor que inicializa nodo y nivel
             this.nodo = nodo;
             this.nivel = nivel;
         }
     }
 
 
+    //Para comprobar si todos los nodos tienen el mismo número de hijos
     public boolean isArbolHomogeneoIterativo() {
-        if (raiz == null) return true;
+        if (raiz == null) return true; //si el árbol está vacío se considera homogéneo
 
-        int hijosEsperados = contarHijos(raiz);
+        int hijosEsperados = contarHijos(raiz); //guardamos el número de hijos que tiene la raíz como referencia
 
-        Stack<NodoArbol<T>> pila = new Stack<>();
-        pila.push(raiz);
+        Stack<NodoArbol<T>> pila = new Stack<>(); //pila para recorrer el árbol
+        pila.push(raiz); //empezamos desde la raíz
 
-        while (!pila.isEmpty()) {
-            NodoArbol<T> actual = pila.pop();
+        while (!pila.isEmpty()) { //mientras haya nodos por revisar
+            NodoArbol<T> actual = pila.pop(); //sacamos el nodo actual
 
-            int hijosNodo = contarHijos(actual);
+            int hijosNodo = contarHijos(actual); //contamos los hijos del nodo actual
 
-            // Si tiene hijos, debe tener exactamente los mismos que la raíz
+            //si el nodo no es hoja y tiene distinto número de hijos que la raíz, ya no es homogéneo
             if (hijosNodo != 0 && hijosNodo != hijosEsperados) {
                 return false;
             }
 
-            // Apilar hijos existentes
-            if (actual.hijoIzquierdo != null) pila.push(actual.hijoIzquierdo);
-            if (actual.hijoDerecho != null) pila.push(actual.hijoDerecho);
+            if (actual.hijoIzquierdo != null) pila.push(actual.hijoIzquierdo); //metemos hijo izquierdo si existe
+            if (actual.hijoDerecho != null) pila.push(actual.hijoDerecho); //metemos hijo derecho si existe
         }
 
-        return true;
-    }
-    private int contarHijos(NodoArbol<T> nodo) {
-        int hijos = 0;
-        if (nodo.hijoIzquierdo != null) hijos++;
-        if (nodo.hijoDerecho != null) hijos++;
-        return hijos;
-    }
-    private boolean comprobarHomogeneoRec(NodoArbol<T> nodo, int hijosEsperados) {
-        if (nodo == null) return true;
-
-        int hijosNodo = contarHijos(nodo);
-
-        if (hijosNodo != 0 && hijosNodo != hijosEsperados) return false;
-
-        return comprobarHomogeneoRec(nodo.hijoIzquierdo, hijosEsperados) && comprobarHomogeneoRec(nodo.hijoDerecho, hijosEsperados);
+        return true; //si no se ha roto la condición, es homogéneo
     }
 
+    private int contarHijos(NodoArbol<T> nodo) { //cuenta cuántos hijos tiene un nodo
+        int hijos = 0; //contador de hijos
 
-    //Para comrpobar que el árbol sea casi hueco el proceso es Nodo->Hijos->Hijos de los hijos... y usamos una cola que funciona de manera FIFO
+        if (nodo.hijoIzquierdo != null) hijos++; //si tiene hijo izquierdo sumamos 1
+        if (nodo.hijoDerecho != null) hijos++; //si tiene hijo derecho sumamos 1
+
+        return hijos; //devolvemos el total
+    }
+
+    private boolean comprobarHomogeneoRec(NodoArbol<T> nodo, int hijosEsperados) { //versión recursiva de la comprobación de homogeneidad
+        if (nodo == null) return true; //si el nodo es nulo no afecta
+
+        int hijosNodo = contarHijos(nodo); //contamos hijos del nodo actual
+
+        if (hijosNodo != 0 && hijosNodo != hijosEsperados) return false; //si no es hoja y no coincide con los hijos esperados, falla
+
+        return comprobarHomogeneoRec(nodo.hijoIzquierdo, hijosEsperados) && comprobarHomogeneoRec(nodo.hijoDerecho, hijosEsperados); //comprobamos recursivamente izquierda y derecha
+    }
+
+
+    //Para comprobar que el árbol sea casi hueco el proceso es Nodo->Hijos->Hijos de los hijos... y usamos una cola que funciona de manera FIFO
     public boolean isArbolCasiCompleto() {
         if (raiz == null) return true; //si el árbol es vacío se considera completo
 
