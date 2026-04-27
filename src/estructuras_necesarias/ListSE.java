@@ -1,4 +1,4 @@
-package arbol.estructuras_necesarias;
+package estructuras_necesarias;
 
 public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
@@ -156,5 +156,23 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
 
     public ElementSE<T> getFirst() { //devuelve el primer nodo
         return first;
+    }
+
+    @Override
+    public String toString() {
+        String resultado = "[";
+
+        MyIterate<T> it = this.getIterate();
+
+        while (it.hasNext()) {
+            resultado = resultado + it.next();
+
+            if (it.hasNext()) {
+                resultado = resultado + ", ";
+            }
+        }
+
+        resultado = resultado + "]";
+        return resultado;
     }
 }

@@ -1,4 +1,4 @@
-package arbol.estructuras_necesarias;
+package estructuras_necesarias;
 
 public interface MyList <T extends Comparable <T>> {
 

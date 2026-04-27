@@ -1,0 +1,64 @@
+package arbol.arbol_recursivo.binario.arbol_busqueda;
+
+import arbol.arbol_recursivo.binario.nodo.NodoBinario;
+
+public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase<T> {
+
+    @Override
+    public void insertar(T data) {
+        root = insertarRec(root, data);
+    }
+
+    private NodoBinario<T> insertarRec(NodoBinario<T> nodo, T data) {
+        if (nodo == null) return new NodoBinario<>(data);
+        int cmp = data.compareTo(nodo.getData());
+        if (cmp < 0) {
+            nodo.setLeft(insertarRec(nodo.getLeft(), data));
+        } else {
+            // duplicados a la derecha
+            nodo.setRight(insertarRec(nodo.getRight(), data));
+        }
+        return nodo;
+    }
+
+    @Override
+    public NodoBinario<T> buscar(T data) {
+        return buscarRec(root, data);
+    }
+
+    private NodoBinario<T> buscarRec(NodoBinario<T> nodo, T data) {
+        if (nodo == null) return null;
+        int cmp = data.compareTo(nodo.getData());
+        if (cmp == 0) return nodo;
+        if (cmp < 0) return buscarRec(nodo.getLeft(), data);
+        return buscarRec(nodo.getRight(), data);
+    }
+
+    @Override
+    public void eliminar(T data) {
+        root = eliminarRec(root, data);
+    }
+
+    private NodoBinario<T> eliminarRec(NodoBinario<T> nodo, T data) {
+        if (nodo == null) return null;
+        int cmp = data.compareTo(nodo.getData());
+        if (cmp < 0) {
+            nodo.setLeft(eliminarRec(nodo.getLeft(), data));
+        } else if (cmp > 0) {
+            nodo.setRight(eliminarRec(nodo.getRight(), data));
+        } else {
+            // eliminar una ocurrencia (misma lógica que sin duplicados)
+            if (nodo.getLeft() == null) return nodo.getRight();
+            if (nodo.getRight() == null) return nodo.getLeft();
+            NodoBinario<T> sucesor = min(nodo.getRight());
+            nodo.setData(sucesor.getData());
+            nodo.setRight(eliminarRec(nodo.getRight(), sucesor.getData()));
+        }
+        return nodo;
+    }
+
+    private NodoBinario<T> min(NodoBinario<T> nodo) {
+        while (nodo.getLeft() != null) nodo = nodo.getLeft();
+        return nodo;
+    }
+}
