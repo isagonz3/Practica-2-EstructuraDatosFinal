@@ -15,7 +15,6 @@ public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase
         if (cmp < 0) {
             nodo.setLeft(insertarRec(nodo.getLeft(), data));
         } else {
-            // duplicados a la derecha
             nodo.setRight(insertarRec(nodo.getRight(), data));
         }
         return nodo;
@@ -47,7 +46,6 @@ public class ArbolBSTConDuplicados<T extends Comparable<T>> extends ArbolBSTBase
         } else if (cmp > 0) {
             nodo.setRight(eliminarRec(nodo.getRight(), data));
         } else {
-            // eliminar una ocurrencia (misma lógica que sin duplicados)
             if (nodo.getLeft() == null) return nodo.getRight();
             if (nodo.getRight() == null) return nodo.getLeft();
             NodoBinario<T> sucesor = min(nodo.getRight());

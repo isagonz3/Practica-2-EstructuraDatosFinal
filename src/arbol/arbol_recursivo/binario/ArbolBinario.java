@@ -6,7 +6,6 @@ public class ArbolBinario<T extends Comparable<T>> extends ArbolBinarioBase<T> {
 
     @Override
     public void add(T data) {
-        // Inserción sin orden (árbol binario genérico): por ejemplo, siempre a la izquierda si se puede
         root = insertarRec(root, data);
     }
 
@@ -17,7 +16,6 @@ public class ArbolBinario<T extends Comparable<T>> extends ArbolBinarioBase<T> {
         } else if (nodo.getRight() == null) {
             nodo.setRight(new NodoBinario<>(data));
         } else {
-            // Por simplicidad, seguimos bajando por la izquierda
             nodo.setLeft(insertarRec(nodo.getLeft(), data));
         }
         return nodo;

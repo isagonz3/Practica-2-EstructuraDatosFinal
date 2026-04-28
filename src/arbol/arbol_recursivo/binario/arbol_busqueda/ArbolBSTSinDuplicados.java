@@ -16,7 +16,7 @@ public class ArbolBSTSinDuplicados<T extends Comparable<T>> extends ArbolBSTBase
             nodo.setLeft(insertarRec(nodo.getLeft(), data));
         } else if (cmp > 0) {
             nodo.setRight(insertarRec(nodo.getRight(), data));
-        } // si es igual, se ignora (sin duplicados)
+        }
         return nodo;
     }
 
@@ -46,10 +46,9 @@ public class ArbolBSTSinDuplicados<T extends Comparable<T>> extends ArbolBSTBase
         } else if (cmp > 0) {
             nodo.setRight(eliminarRec(nodo.getRight(), data));
         } else {
-            // nodo encontrado
             if (nodo.getLeft() == null) return nodo.getRight();
             if (nodo.getRight() == null) return nodo.getLeft();
-            // dos hijos: usar sucesor (mínimo del subárbol derecho)
+
             NodoBinario<T> sucesor = min(nodo.getRight());
             nodo.setData(sucesor.getData());
             nodo.setRight(eliminarRec(nodo.getRight(), sucesor.getData()));

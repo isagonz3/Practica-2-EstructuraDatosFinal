@@ -18,7 +18,6 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         } else if (cmp > 0) {
             nodo.setRight(insertarAVL(nodo.getRight(), data));
         } else {
-            // sin duplicados: ignorar
             return nodo;
         }
 
@@ -39,11 +38,9 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         } else if (cmp > 0) {
             nodo.setRight(eliminarAVL(nodo.getRight(), data));
         } else {
-            // nodo encontrado
             if (nodo.getLeft() == null) return nodo.getRight();
             if (nodo.getRight() == null) return nodo.getLeft();
 
-            // dos hijos: sucesor (mínimo del subárbol derecho)
             NodoBinario<T> sucesor = min(nodo.getRight());
             nodo.setData(sucesor.getData());
             nodo.setRight(eliminarAVL(nodo.getRight(), sucesor.getData()));
@@ -65,9 +62,6 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         return buscarRec(nodo.getRight(), data);
     }
 
-    // ==========================
-    //   UTILIDADES AVL
-    // ==========================
 
     private int altura(NodoBinario<T> nodo) {
         if (nodo == null) return -1;
@@ -84,7 +78,6 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
     private NodoBinario<T> balancear(NodoBinario<T> nodo) {
         int fb = factorBalance(nodo);
 
-        // Caso izquierda pesada
         if (fb > 1) {
             if (factorBalance(nodo.getLeft()) < 0) {
                 nodo.setLeft(rotacionIzquierda(nodo.getLeft())); // LR
@@ -92,7 +85,6 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
             return rotacionDerecha(nodo); // LL
         }
 
-        // Caso derecha pesada
         if (fb < -1) {
             if (factorBalance(nodo.getRight()) > 0) {
                 nodo.setRight(rotacionDerecha(nodo.getRight())); // RL
@@ -107,7 +99,6 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         NodoBinario<T> x = y.getLeft();
         NodoBinario<T> T2 = x.getRight();
 
-        // Rotar
         x.setRight(y);
         y.setLeft(T2);
 
@@ -118,7 +109,6 @@ public class ArbolBalanceado<T extends Comparable<T>> extends ArbolBSTSinDuplica
         NodoBinario<T> y = x.getRight();
         NodoBinario<T> T2 = y.getLeft();
 
-        // Rotar
         y.setLeft(x);
         x.setRight(T2);
 

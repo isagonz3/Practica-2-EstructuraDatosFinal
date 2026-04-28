@@ -11,19 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // 🔹 1. Cargar datos
         ListSE<Tripleta> tripletas = ArchivosJson.cargar("datos.json");
 
         GrafoRDF grafo = new GrafoRDF();
         grafo.cargarTripletas(tripletas);
 
-        // 🔹 2. Lugar de nacimiento
         System.out.println("Lugar de nacimiento de Einstein:");
-        System.out.println(
-                grafo.lugarNacimiento("persona:Albert Einstein")
-        );
+        System.out.println(grafo.lugarNacimiento("persona:Albert Einstein"));
 
-        // 🔹 3. Camino mínimo (BFS)
         System.out.println("\nCamino mínimo entre Einstein y Ulm:");
         System.out.println(
                 BFS.caminoMinimo(
@@ -33,7 +28,6 @@ public class Main {
                 )
         );
 
-        // 🔹 4. Grafo disjunto
         ListSE<String> nodos = new ListSE<>();
         nodos.addLast("persona:Albert Einstein");
         nodos.addLast("lugar:Ulm");
@@ -45,7 +39,6 @@ public class Main {
                 ComponentesConexas.esDisjunto(grafo, nodos)
         );
 
-        // 🔹 5. Pregunta clave
         System.out.println("\nPersona nacida en el mismo lugar que Einstein:");
         System.out.println(
                 grafo.mismoLugarQueEinstein()

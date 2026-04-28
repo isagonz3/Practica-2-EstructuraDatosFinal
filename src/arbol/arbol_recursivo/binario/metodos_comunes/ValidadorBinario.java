@@ -21,11 +21,8 @@ public class ValidadorBinario {
     }
 
     public static <T extends Comparable<T>> boolean esCasiCompleto(NodoBinario<T> root) {
-        // Definición: hojas en dos niveles, y las del nivel más profundo contiguas desde la izquierda.
-        // Implementación típica: recorrido por niveles detectando "huecos".
         if (root == null) return true;
 
-        // Implementación sin colas de Java: usamos una lista como pseudo-cola
         estructuras_necesarias.ListSE<NodoBinario<T>> cola = new estructuras_necesarias.ListSE<>();
         cola.addLast(root);
         boolean encontradoHueco = false;

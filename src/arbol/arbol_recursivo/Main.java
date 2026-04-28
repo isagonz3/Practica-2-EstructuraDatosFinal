@@ -10,16 +10,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // PROGRAMA 1: 0..128 en orden
         ArbolBinarioDeBusquedaEnteros arbolOrdenado = new ArbolBinarioDeBusquedaEnteros();
         for (int i = 0; i <= 128; i++) {
             arbolOrdenado.add(i);
         }
-
-        System.out.println("Programa 1: inserción ordenada");
+        System.out.println("Caso 1: inserción ordenada");
         probarArbol(arbolOrdenado);
 
-        // PROGRAMA 2: 0..128 aleatorio sin repetir
         ArbolBinarioDeBusquedaEnteros arbolAleatorio = new ArbolBinarioDeBusquedaEnteros();
         int[] nums = new int[129];
         for (int i = 0; i <= 128; i++) nums[i] = i;
