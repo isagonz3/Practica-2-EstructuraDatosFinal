@@ -175,4 +175,17 @@ public class ListSE<T extends Comparable<T>> implements MyList<T> {
         resultado = resultado + "]";
         return resultado;
     }
+
+    public int size() {
+        int contador = 0;
+        ElementSE<T> actual = first;
+
+        while (actual != null) {
+            contador++;
+            actual = actual.getNext();
+        }
+
+        return contador;
+    }
+
 }
