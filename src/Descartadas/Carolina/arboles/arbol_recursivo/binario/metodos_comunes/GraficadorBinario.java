@@ -2,22 +2,52 @@ package Descartadas.Carolina.arboles.arbol_recursivo.binario.metodos_comunes;
 
 import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
 
-public class GraficadorBinario { //clase auxiliar para representar el árbol
+public class GraficadorBinario { //clase que se encarga de representar el árbol en forma de texto
 
-    public static <T extends Comparable<T>> String toString(NodoBinario<T> raiz) {
-        StringBuilder sb = new StringBuilder();
-        toStringRec(raiz, sb, 0); //llamada al metodo recursivo empezando en nivel 0
-        return sb.toString(); //devuelve el resultado final
+    public static <T extends Comparable<T>> String toGraficarString(NodoBinario<T> raiz) { //metodo principal que devuelve el árbol como string
+        if (raiz == null) return "(árbol vacío)"; //si no hay raíz no hay nada que mostrar
+
+        return graficarRec(raiz, "", true); //empieza desde la raíz sin prefijo y como último nodo
     }
 
-    private static <T extends Comparable<T>> void toStringRec(NodoBinario<T> nodo, StringBuilder sb, int nivel) { //recorre el árbol para dibujarlo lateralmente
-        if (nodo == null) return; //si el nodo es nulo no se imprime nada
+    private static <T extends Comparable<T>> String graficarRec(NodoBinario<T> nodo, String prefijo, boolean esUltimo) { //método recursivo que construye el dibujo del árbol
 
-        toStringRec(nodo.getRight(), sb, nivel + 1); //primero recorre el subárbol derecho
+        String resultado = ""; //string donde se va acumulando el dibujo
 
-        for (int i = 0; i < nivel; i++) sb.append("   "); //añade espacios según el nivel para simular la profundidad
-        sb.append(nodo.getData()).append("\n"); //añade el dato del nodo actual y salta la línea
+        resultado = resultado + prefijo; //añade los espacios o líneas acumuladas de niveles anteriores
 
-        toStringRec(nodo.getLeft(), sb, nivel + 1); //después recorre el subárbol izquierdo
+        if (esUltimo) { //si el nodo es el último hijo
+            resultado = resultado + "└── "; //se dibuja con este símbolo
+        } else { //si no es el último
+            resultado = resultado + "├── "; //se dibuja con este otro símbolo
+        }
+
+        resultado = resultado + nodo.getData() + "\n"; //añade el dato del nodo y salto de línea
+
+        NodoBinario<T> left = nodo.getLeft(); //hijo izquierdo
+        NodoBinario<T> right = nodo.getRight(); //hijo derecho
+
+        if (left == null && right == null) return resultado; //si es hoja no hay que seguir
+
+        String nuevoPrefijo; //prefijo que se pasará a los hijos
+
+        if (esUltimo) { //si este nodo era el último
+            nuevoPrefijo = prefijo + "    "; //no se dibuja línea vertical
+        } else {
+            nuevoPrefijo = prefijo + "│   "; //se mantiene la línea vertical
+        }
+
+        if (right != null && left != null) { //si tiene los dos hijos
+            resultado = resultado + graficarRec(right, nuevoPrefijo, false); //primero el derecho
+            resultado = resultado + graficarRec(left, nuevoPrefijo, true); //después el izquierdo
+        }
+        else if (right != null) { //si solo tiene derecho
+            resultado = resultado + graficarRec(right, nuevoPrefijo, true);
+        }
+        else { //si solo tiene izquierdo
+            resultado = resultado + graficarRec(left, nuevoPrefijo, true);
+        }
+
+        return resultado; //devuelve el string construido
     }
 }

@@ -129,5 +129,7 @@ public abstract class ArbolBinarioBase<T extends Comparable<T>> implements Arbol
     public MyList<T> getListaOrdenCentral() {return Recorridos.inOrden(raiz);} //recorrido inorden
 
     @Override
-    public String toString() {return GraficadorBinario.toString(raiz);} //representación en texto del árbol
+    public String toString() {
+        return GraficadorBinario.toGraficarString(this.raiz);
+    }
 }
