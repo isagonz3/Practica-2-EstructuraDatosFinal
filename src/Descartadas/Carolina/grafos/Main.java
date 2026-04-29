@@ -3,9 +3,9 @@ package Descartadas.Carolina.grafos;
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 import Descartadas.Carolina.grafos.componentes.Grafo;
 import Descartadas.Carolina.grafos.componentes.Nodo;
-import Descartadas.Carolina.grafos.ejercicios.CaminoMinimo;
-import Descartadas.Carolina.grafos.ejercicios.ConsultasNobel;
-import Descartadas.Carolina.grafos.ejercicios.GrafoDisjunto;
+import Descartadas.Carolina.grafos.métodos.CaminoMinimo;
+import Descartadas.Carolina.grafos.métodos.ConsultasNobel;
+import Descartadas.Carolina.grafos.métodos.GrafoDisjunto;
 import Descartadas.Carolina.grafos.json.ArchivosJson;
 import Descartadas.Carolina.grafos.json.Tripleta;
 
