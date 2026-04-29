@@ -1,4 +1,4 @@
-package Descartadas.Carolina.grafos.ejercicios.GrafoDisjunto;
+package Descartadas.Carolina.grafos.ejercicios;
 
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 import Descartadas.Carolina.estructuras_necesarias.Queue;

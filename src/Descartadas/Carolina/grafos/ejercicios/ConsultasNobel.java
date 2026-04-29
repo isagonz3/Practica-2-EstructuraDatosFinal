@@ -1,4 +1,4 @@
-package Descartadas.Carolina.grafos.ejercicios.ConsultasNobel;
+package Descartadas.Carolina.grafos.ejercicios;
 
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 import Descartadas.Carolina.grafos.componentes.Arista;
