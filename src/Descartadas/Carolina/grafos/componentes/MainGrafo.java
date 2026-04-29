@@ -43,7 +43,12 @@ public class MainGrafo { //main de prueba del grafo básico
 
             System.out.println("Nodo encontrado: " + buscado.nombre);
 
-            g.imprimirComoArbol();
+            for (int i = 0; i < buscado.aristas.getSize(); i++) {
+
+                Arista a = buscado.aristas.get(i);
+
+                System.out.println("  --[" + a.etiqueta + "]--> " + a.destino.nombre);
+            }
 
         } else {
             System.out.println("Nodo no encontrado");
