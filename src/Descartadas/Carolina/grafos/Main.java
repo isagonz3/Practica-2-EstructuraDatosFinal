@@ -3,9 +3,9 @@ package Descartadas.Carolina.grafos;
 import Descartadas.Carolina.estructuras_necesarias.ListSE;
 import Descartadas.Carolina.grafos.componentes.Grafo;
 import Descartadas.Carolina.grafos.componentes.Nodo;
-import Descartadas.Carolina.grafos.métodos.CaminoMinimo;
-import Descartadas.Carolina.grafos.métodos.ConsultasNobel;
-import Descartadas.Carolina.grafos.métodos.GrafoDisjunto;
+import Descartadas.Carolina.grafos.metodos.CaminoMinimo;
+import Descartadas.Carolina.grafos.metodos.ConsultasNobel;
+import Descartadas.Carolina.grafos.metodos.GrafoDisjunto;
 import Descartadas.Carolina.grafos.json.ArchivosJson;
 import Descartadas.Carolina.grafos.json.Tripleta;
 
@@ -31,13 +31,14 @@ public class Main { //main del programa de grafos
         //metodo del camino mínimo
         System.out.println("----- Camino mínimo -----");
 
-        ListSE<Nodo> camino =
-                CaminoMinimo.obtenerCamino(g, "persona:Albert Einstein", "persona:Marie Curie"); //busca camino
+        CaminoMinimo cm = new CaminoMinimo(g); // creas el objeto con el grafo
 
-        for (int i = 0; i < camino.getSize(); i++) { //imprime el camino
+        ListSE<Nodo> camino = cm.obtenerCamino("persona:Albert Einstein", "persona:Marie Curie"); // busca camino
+
+        for (int i = 0; i < camino.getSize(); i++) { // imprime el camino
             System.out.print(camino.get(i).nombre);
 
-            if (i < camino.getSize() - 1) System.out.print(" -> "); //separador
+            if (i < camino.getSize() - 1) System.out.print(" -> "); // separador
         }
 
 
