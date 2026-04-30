@@ -16,11 +16,11 @@ public class MainGrafo { //main de prueba del grafo básico
         g.cargarDesdeTripletas(datos);
 
         // 3. Mostrar grafo en formato árbol
-        System.out.println("===== GRAFO (FORMATO ÁRBOL) =====\n");
+        System.out.println("----- Representación del grafo -----");
         g.imprimirComoArbol();
 
         // ===== tripletas (rdf real) =====
-        System.out.println("===== TRIPLETAS RDF =====");
+        System.out.println("----- Tripletas en formato RDF -----");
 
         for (int i = 0; i < g.tripletas.getSize(); i++) { //recorre tripletas
 
@@ -34,7 +34,7 @@ public class MainGrafo { //main de prueba del grafo básico
         }
 
         // ===== buscar nodo =====
-        System.out.println("\n===== BUSCAR NODO: Juan =====");
+        System.out.println("\n----- Buscar un nodo -----");
 
         // buscar nodo dentro del grafo cargado
         Nodo buscado = g.buscarNodo("persona:Albert Einstein");
@@ -47,7 +47,11 @@ public class MainGrafo { //main de prueba del grafo básico
 
                 Arista a = buscado.aristas.get(i);
 
-                System.out.println("  --[" + a.etiqueta + "]--> " + a.destino.nombre);
+                System.out.println(
+                        "<" + buscado.nombre + "> " +
+                                "<" + a.etiqueta + "> " +
+                                "<" + a.destino.nombre + "> ."
+                );
             }
 
         } else {

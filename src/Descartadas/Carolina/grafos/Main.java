@@ -21,13 +21,13 @@ public class Main { //main del programa de grafos
         g.cargarDesdeTripletas(datos);
 
         // 3. Mostrar grafo en formato árbol
-        System.out.println("===== GRAFO (FORMATO ÁRBOL) =====\n");
+        System.out.println("----- Representación del grafo -----");
         g.imprimirComoArbol();
 
         // =====================================================
         // camino mínimo
         // =====================================================
-        System.out.println("\n===== CAMINO MÍNIMO =====");
+        System.out.println("----- Camino mínimo -----");
 
         ListSE<Nodo> camino =
                 CaminoMinimo.obtenerCamino(g, "persona:Albert Einstein", "persona:Marie Curie"); //busca camino
@@ -41,7 +41,7 @@ public class Main { //main del programa de grafos
         // =====================================================
         // componentes conexas
         // =====================================================
-        System.out.println("\n\n===== COMPONENTES CONEXAS =====");
+        System.out.println("\n\n----- Componentes conexas -----");
 
         int componentes = GrafoDisjunto.contarComponentes(g); //calcula componentes
 
@@ -50,7 +50,8 @@ public class Main { //main del programa de grafos
         // =====================================================
         // consulta nobel
         // =====================================================
-        System.out.println("\n===== CONSULTA NOBEL =====");
+        System.out.println("\n----- Premios Nobel -----");
+        System.out.println("1.Mismo premio");
 
         ListSE<String> resultado =
                 ConsultasNobel.fisicosMismaCiudadQueEinstein(g); //consulta principal
@@ -63,7 +64,7 @@ public class Main { //main del programa de grafos
             }
         }
 
-        System.out.println("\n===== LUGARES NACIMIENTO NOBEL =====");
+        System.out.println("2.Lugares de nacimiento");
 
         ListSE<String> lugares =
                 ConsultasNobel.lugaresNacimientoNobel(g); //segunda consulta
