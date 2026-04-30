@@ -14,7 +14,8 @@ public class Main { //main del programa de grafos
     public static void main(String[] args) {
 
         //cargar JSON
-        ListSE<Tripleta> datos = ArchivosJson.cargar("datos.json");
+        ArchivosJson loader = new ArchivosJson("datos.json");
+        ListSE<Tripleta> datos = loader.cargar();
 
 
         //construir grafo
