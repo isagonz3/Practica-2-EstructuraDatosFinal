@@ -4,7 +4,7 @@ import Descartadas.Isabel.TADs.Lista;
 
 public class TestSchoolOfRock {
     public static void main(String[] args) {
-        String ruta = "src/EL2b/SchoolOfRock.json";
+        String ruta = "src/Seleccionadas/grafos/SchoolOfRock.json";
 
         GrafoDeConocimiento grafo = new GrafoDeConocimiento();
         ParserJSON.cargarGrafo(ruta, grafo);
