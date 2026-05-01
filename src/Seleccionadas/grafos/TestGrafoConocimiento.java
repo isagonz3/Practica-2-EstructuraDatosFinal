@@ -5,7 +5,7 @@ import Descartadas.Isabel.TADs.Lista;
 public class TestGrafoConocimiento {
     public static void main(String[] args) {
 
-        String ruta = "src/EL2b/DatosConsultaGrafo.json";
+        String ruta = "src/Seleccionadas/grafos/DatosGrafoConocimiento.json";
 
         GrafoDeConocimiento grafo = new GrafoDeConocimiento();
         ParserJSON.cargarGrafo(ruta, grafo);
