@@ -1,7 +1,7 @@
 package Descartadas.Álvaro.Practicas.Test;
 
 import Descartadas.Álvaro.EstructurasP1.IndexedList;
-import Descartadas.Álvaro.Árboles.ArbolNario.NaryTree;
+import Seleccionadas.arboles.arbol_nario.NaryTree;
 
 public class TestNaryTree {
 

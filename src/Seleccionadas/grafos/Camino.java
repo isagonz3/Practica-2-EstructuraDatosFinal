@@ -1,4 +1,4 @@
-package Descartadas.Isabel.EL2b;
+package Seleccionadas.grafos;
 
 import Descartadas.Isabel.TADs.Cola;
 import Descartadas.Isabel.TADs.Lista;

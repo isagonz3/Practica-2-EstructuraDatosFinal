@@ -1,4 +1,4 @@
-package Descartadas.Álvaro.Árboles.ArbolNario;
+package Seleccionadas.arboles.arbol_nario;
 
 import Descartadas.Álvaro.EstructurasP1.IndexedList;
 import Descartadas.Álvaro.Nodos.Arboles.Narios.NaryNode;
