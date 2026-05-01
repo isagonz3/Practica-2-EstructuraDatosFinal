@@ -1,21 +1,19 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario.arbol_busqueda;
 
-import Descartadas.Carolina.estructuras_necesarias.MyIterate;
-import Descartadas.Carolina.estructuras_necesarias.MyList;
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
 
 public class ArbolBalanceadoEnteros extends ArbolBalanceado<Integer> { //árbol balanceado especializado en enteros
 
-    public int getSuma() { //devuelve la suma de todos los elementos del árbol
-        MyList<Integer> lista = getListaOrdenCentral(); //recorre el árbol en inorden y guarda los datos en una lista
+    public int calcularSumaElementos() { //suma todos los elementos del árbol
+        return sumarRec(raiz); //CAMBIO: recorrido directo sin lista intermedia
+    }
 
-        MyIterate<Integer> it = lista.getIterate(); //iterador para recorrer la lista de forma secuencial
+    private int sumarRec(NodoBinario<Integer> nodo) { //recorrido recursivo del árbol
 
-        int suma = 0; //acumulador de la suma
+        if (nodo == null) return 0; //caso base: si no hay nodo, suma 0
 
-        while (it.hasNext()) { //mientras queden elementos en la lista
-            suma += it.next(); //se van sumando uno a uno
-        }
-
-        return suma; //devuelve la suma total
+        return nodo.getData() //valor del nodo actual
+                + sumarRec(nodo.getLeft()) //suma del subárbol izquierdo
+                + sumarRec(nodo.getRight()); //suma del subárbol derecho
     }
 }

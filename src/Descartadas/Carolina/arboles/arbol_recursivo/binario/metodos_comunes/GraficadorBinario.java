@@ -4,13 +4,14 @@ import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
 
 public class GraficadorBinario { //clase que se encarga de representar el árbol en forma de texto
 
-    public static <T extends Comparable<T>> String toGraficarString(NodoBinario<T> raiz) { //metodo principal que devuelve el árbol como string
+    public <T extends Comparable<T>> String toGraficarString(NodoBinario<T> raiz) { //metodo principal que devuelve el árbol como string
+
         if (raiz == null) return "(árbol vacío)"; //si no hay raíz no hay nada que mostrar
 
         return graficarRec(raiz, "", true); //empieza desde la raíz sin prefijo y como último nodo
     }
 
-    private static <T extends Comparable<T>> String graficarRec(NodoBinario<T> nodo, String prefijo, boolean esUltimo) { //método recursivo que construye el dibujo del árbol
+    private <T extends Comparable<T>> String graficarRec(NodoBinario<T> nodo, String prefijo, boolean esUltimo) { //metodo recursivo que construye el dibujo del árbol
 
         String resultado = ""; //string donde se va acumulando el dibujo
 
@@ -41,10 +42,10 @@ public class GraficadorBinario { //clase que se encarga de representar el árbol
             resultado = resultado + graficarRec(right, nuevoPrefijo, false); //primero el derecho
             resultado = resultado + graficarRec(left, nuevoPrefijo, true); //después el izquierdo
         }
-        else if (right != null) { //si solo tiene derecho
+        else if (right != null) { //si solo tiene hijo derecho
             resultado = resultado + graficarRec(right, nuevoPrefijo, true);
         }
-        else { //si solo tiene izquierdo
+        else { //si solo tiene hijo izquierdo
             resultado = resultado + graficarRec(left, nuevoPrefijo, true);
         }
 

@@ -34,4 +34,9 @@ public class NodoBinario<T extends Comparable<T>> implements Comparable<NodoBina
     public int compareTo(NodoBinario<T> o) {
         return 0; //siempre devuelve 0 porque no se usa directamente
     }
+
+    @Override
+    public String toString() { //representación legible del nodo
+        return String.valueOf(data); //muestra solo el valor del nodo
+    }
 }

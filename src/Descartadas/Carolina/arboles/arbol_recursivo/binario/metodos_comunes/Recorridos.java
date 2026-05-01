@@ -6,13 +6,13 @@ import Descartadas.Carolina.estructuras_necesarias.MyList;
 
 public class Recorridos { //clase auxiliar para realizar los distintos recorridos del árbol
 
-    public static <T extends Comparable<T>> MyList<T> preOrden(NodoBinario<T> raiz) { //recorrido en preorden (nodo -> izquierda -> derecha)
+    public <T extends Comparable<T>> MyList<T> preOrden(NodoBinario<T> raiz) { //recorrido en preorden (nodo -> izquierda -> derecha)
         MyList<T> lista = new ListSE<>(); //lista donde se guardan los resultados
         preOrdenRec(raiz, lista); //llamada al metodo recursivo
         return lista; //devuelve la lista final
     }
 
-    private static <T extends Comparable<T>> void preOrdenRec(NodoBinario<T> nodo, MyList<T> lista) { //recorre el árbol en preorden
+    private <T extends Comparable<T>> void preOrdenRec(NodoBinario<T> nodo, MyList<T> lista) { //recorre el árbol en preorden
         if (nodo == null) return; //si el nodo es nulo no hace nada
 
         lista.addLast(nodo.getData()); //primero se procesa el nodo actual
@@ -20,13 +20,13 @@ public class Recorridos { //clase auxiliar para realizar los distintos recorrido
         preOrdenRec(nodo.getRight(), lista); //por último el subárbol derecho
     }
 
-    public static <T extends Comparable<T>> MyList<T> inOrden(NodoBinario<T> raiz) { //recorrido en inorden (izquierda -> nodo -> derecha)
+    public <T extends Comparable<T>> MyList<T> inOrden(NodoBinario<T> raiz) { //recorrido en inorden (izquierda -> nodo -> derecha)
         MyList<T> lista = new ListSE<>(); //lista donde se guardan los resultados
         inOrdenRec(raiz, lista); //llamada al metodo recursivo
         return lista; //devuelve la lista final
     }
 
-    private static <T extends Comparable<T>> void inOrdenRec(NodoBinario<T> nodo, MyList<T> lista) { //recorre el árbol en inorden
+    private <T extends Comparable<T>> void inOrdenRec(NodoBinario<T> nodo, MyList<T> lista) { //recorre el árbol en inorden
         if (nodo == null) return; //si el nodo es nulo no hace nada
 
         inOrdenRec(nodo.getLeft(), lista); //primero se recorre el subárbol izquierdo
@@ -34,13 +34,13 @@ public class Recorridos { //clase auxiliar para realizar los distintos recorrido
         inOrdenRec(nodo.getRight(), lista); //por último el subárbol derecho
     }
 
-    public static <T extends Comparable<T>> MyList<T> postOrden(NodoBinario<T> raiz) { //recorrido en postorden (izquierda -> derecha -> nodo)
+    public <T extends Comparable<T>> MyList<T> postOrden(NodoBinario<T> raiz) { //recorrido en postorden (izquierda -> derecha -> nodo)
         MyList<T> lista = new ListSE<>(); //lista donde se guardan los resultados
         postOrdenRec(raiz, lista); //llamada al metodo recursivo
         return lista; //devuelve la lista final
     }
 
-    private static <T extends Comparable<T>> void postOrdenRec(NodoBinario<T> nodo, MyList<T> lista) { //recorre el árbol en postorden
+    private <T extends Comparable<T>> void postOrdenRec(NodoBinario<T> nodo, MyList<T> lista) { //recorre el árbol en postorden
         if (nodo == null) return; //si el nodo es nulo no hace nada
 
         postOrdenRec(nodo.getLeft(), lista); //primero se recorre el subárbol izquierdo

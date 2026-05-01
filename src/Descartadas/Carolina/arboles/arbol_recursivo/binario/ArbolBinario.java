@@ -1,6 +1,9 @@
 package Descartadas.Carolina.arboles.arbol_recursivo.binario;
 
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.metodos_comunes.Altura;
+import Descartadas.Carolina.arboles.arbol_recursivo.binario.metodos_comunes.Profundidad;
 import Descartadas.Carolina.arboles.arbol_recursivo.binario.nodo.NodoBinario;
+import Descartadas.Carolina.estructuras_necesarias.MyList;
 
 public class ArbolBinario<T extends Comparable<T>> extends ArbolBinarioBase<T> { //implementación de un árbol binario genérico
 
@@ -23,5 +26,32 @@ public class ArbolBinario<T extends Comparable<T>> extends ArbolBinarioBase<T> {
         }
 
         return nodo; //devuelve el nodo actual
+    }
+
+    Altura<T> recorrido = new Altura<>();
+
+    public int getAltura() {
+        return recorrido.calcularAltura(raiz);
+    }
+
+    @Override
+    public MyList<T> getListaDatosNivel(int nivel) {
+        return null;
+    }
+
+    @Override
+    public MyList<T> getCamino(T data) {
+        return null;
+    }
+
+    Profundidad<T> camino = new Profundidad<>();
+
+    public int getProfundidad(T data) {
+        return camino.calcularProfundidad(raiz, data);
+    }
+
+    @Override
+    public int getGrado() {
+        return 0;
     }
 }
